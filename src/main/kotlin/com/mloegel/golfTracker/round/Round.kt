@@ -1,5 +1,7 @@
-package com.mloegel.golfTracker
+package com.mloegel.golfTracker.round
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.mloegel.golfTracker.hole.Hole
 import javax.persistence.*
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDate
@@ -24,7 +26,7 @@ data class Round(
     val description: String,
 
 //    Ability to add score bt individual holes to be added later
-//    @OneToMany(mappedBy = "round", cascade = [CascadeType.ALL], orphanRemoval = true)
-//    @JsonIgnoreProperties(value = ["roundid"], allowSetters = true)
-//    val score: List<Hole> = ArrayList<Hole>()
+    @OneToMany(mappedBy = "round", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @JsonIgnoreProperties(value = ["roundid"], allowSetters = true)
+    val score: List<Hole> = ArrayList()
 )
