@@ -1,6 +1,7 @@
 package com.mloegel.golfTracker.round
 
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
@@ -14,4 +15,10 @@ class RoundService(val db: RoundRepository) {
 
     @Transactional
     fun postRound(round: Round) = db.save(round)
+
+    @Transactional
+    fun deleteRound(round: Round) = db.delete(round)
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    fun deleteAll() = db.deleteAll()
 }
