@@ -19,6 +19,13 @@ class RoundController(val service: RoundService) {
         }
     }
 
-
+    @GetMapping("/rounds/courseName/{courseName}")
+    fun getRoundsByCourseName(@PathVariable courseName: String): List<Round> {
+        try {
+            return service.findRoundsByCourseName(courseName)
+        } catch (exception: EmptyResultDataAccessException) {
+            throw Exception("Course with name $courseName not found! Exception: $exception")
+        }
+    }
 
 }
