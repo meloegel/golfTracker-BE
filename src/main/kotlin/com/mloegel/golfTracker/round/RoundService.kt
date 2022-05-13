@@ -11,7 +11,9 @@ class RoundService(val db: RoundRepository) {
 
     fun findRoundById(roundid: Int): Round = db.findByRoundid(roundid)
 
-    fun findRoundsByCourseName(courseName: String): List<Round> = db.findRoundsByCourseName(courseName)
+    fun findRoundsByCourseName(courseName: String): List<Round> = db.findRoundByCourseName(courseName)
+
+    fun searchRoundsByCourseName(courseName: String): List<Round> = db.findRoundByNameContainingIgnoreCase(courseName)
 
     @Transactional
     fun postRound(round: Round) = db.save(round)

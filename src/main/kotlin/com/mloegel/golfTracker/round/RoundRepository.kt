@@ -6,5 +6,7 @@ interface RoundRepository : CrudRepository<Round, String> {
 
     fun findByRoundid(roundid: Int): Round
 
-    fun findRoundsByCourseName(courseName: String): List<Round>
+    fun findRoundByCourseName(courseName: String): List<Round>
+
+    fun findRoundByNameContainingIgnoreCase(courseName: String): List<Round>
 }
