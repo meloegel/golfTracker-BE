@@ -28,4 +28,9 @@ class RoundController(val service: RoundService) {
         }
     }
 
+    @GetMapping("rounds/search/courseName/{courseName}")
+    fun searchForRoundsByCourseName(@PathVariable courseName: String): List<Round> {
+        return service.searchRoundsByCourseName(courseName)
+    }
+
 }
