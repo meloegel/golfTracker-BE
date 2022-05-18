@@ -1,6 +1,7 @@
 package com.mloegel.golfTracker.round
 
 import org.springframework.dao.EmptyResultDataAccessException
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
@@ -31,6 +32,16 @@ class RoundController(val service: RoundService) {
     @GetMapping("rounds/search/courseName/{courseName}")
     fun searchForRoundsByCourseName(@PathVariable courseName: String): List<Round> {
         return service.searchRoundsByCourseName(courseName)
+    }
+
+    @DeleteMapping("/round/{roundid}")
+    fun deleteRound(@PathVariable roundid: Int) {
+        try {
+            val round = service.findRoundById(roundid)
+            return service.deleteRound(round)
+        } catch (exception: EmptyResultDataAccessException) {
+            throw Exception("Round with id $roundid not found! Exception: $exception")
+        }
     }
 
 }
