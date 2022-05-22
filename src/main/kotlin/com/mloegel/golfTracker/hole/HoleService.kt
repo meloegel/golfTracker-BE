@@ -11,4 +11,7 @@ class HoleService(val db: HoleRepository) {
     @Transactional
     fun postHole(hole: Hole) = db.save(hole)
 
+    @Transactional
+    fun deleteHole(hole: Hole) = db.delete(hole)
+
 }
