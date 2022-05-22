@@ -1,6 +1,14 @@
 package com.mloegel.golfTracker.hole
 
 import com.mloegel.golfTracker.round.RoundRepository
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
-class HoleService(val db: RoundRepository) {
+@Transactional
+@Service
+class HoleService(val db: HoleRepository) {
+
+    @Transactional
+    fun postHole(hole: Hole) = db.save(hole)
+
 }
