@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne
 @Entity
 @Table("HOLE")
 data class Hole(
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val holeid: Int?,

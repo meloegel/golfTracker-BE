@@ -9,6 +9,7 @@ import java.time.LocalDate
 @Entity
 @Table("ROUND")
 data class Round(
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val roundid: Int?,
@@ -25,7 +26,6 @@ data class Round(
     @Column
     val description: String,
 
-//    Ability to add score bt individual holes to be added later
     @OneToMany(mappedBy = "round", cascade = [CascadeType.ALL], orphanRemoval = true)
     @JsonIgnoreProperties(value = ["roundid"], allowSetters = true)
     val score: List<Hole> = ArrayList()

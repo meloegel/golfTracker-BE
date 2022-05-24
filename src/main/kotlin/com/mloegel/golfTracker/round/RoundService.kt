@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 @Service
 class RoundService(val db: RoundRepository) {
+
     fun findAllRounds(): MutableIterable<Round> = db.findAll()
 
     fun findRoundById(roundid: Int): Round = db.findByRoundid(roundid)
