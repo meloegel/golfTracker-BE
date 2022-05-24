@@ -1,5 +1,6 @@
 package com.mloegel.golfTracker.hole
 
+import com.mloegel.golfTracker.round.Round
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -8,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional
 class HoleService(val db: HoleRepository) {
 
     fun findByHoleid(holeid: Int): Hole = db.findByHoleid(holeid)
+
+    fun findHolesByRound(round: Round): List<Hole> = db.findHolesByRound(round)
 
     @Transactional
     fun postHole(hole: Hole) = db.save(hole)
