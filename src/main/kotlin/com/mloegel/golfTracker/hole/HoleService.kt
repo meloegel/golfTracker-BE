@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class HoleService(val db: HoleRepository) {
 
+    fun findByHoleid(holeid: Int): Hole = db.findByHoleid(holeid)
+
     @Transactional
     fun postHole(hole: Hole) = db.save(hole)
 
