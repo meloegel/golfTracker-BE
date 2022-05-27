@@ -28,5 +28,5 @@ data class Round(
 
     @OneToMany(mappedBy = "round", cascade = [CascadeType.ALL], orphanRemoval = true)
     @JsonIgnoreProperties(value = ["roundid"], allowSetters = true)
-    val score: List<Hole> = ArrayList()
+    val score: List<Hole>? = ArrayList()
 )
