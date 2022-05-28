@@ -20,7 +20,7 @@ class SeedData : CommandLineRunner {
     @Autowired
     var roundRepository: RoundRepository? = null
 
-    var date =  LocalDate.of(2022, 5, 27)
+    var date: LocalDate =  LocalDate.of(2022, 5, 27)
 
     @Transactional
     @Throws(Exception::class)

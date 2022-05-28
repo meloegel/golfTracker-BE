@@ -8,5 +8,5 @@ interface RoundRepository : CrudRepository<Round, String> {
 
     fun findRoundByCourseName(courseName: String): List<Round>
 
-    fun findRoundByNameContainingIgnoreCase(courseName: String): List<Round>
+    fun findRoundByCourseNameContainingIgnoreCase(courseName: String): List<Round>
 }
