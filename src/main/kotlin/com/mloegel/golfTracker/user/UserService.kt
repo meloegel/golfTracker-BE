@@ -10,4 +10,8 @@ class UserService(val db: UserRepository) {
     fun findAllUsers(): MutableIterable<User> = db.findAll()
 
     fun findByUserid(userid: Int): User = db.findUserByUserid(userid)
+
+    fun findByUsername(username: String): User = db.findByUsername(username)
+
+    fun searchByUsername(username: String): List<User> = db.findByUsernameContainingIgnoreCase(username)
 }
