@@ -16,6 +16,15 @@ class UserService(val db: UserRepository) {
 
     fun searchByUsername(username: String): List<User> = db.findByUsernameContainingIgnoreCase(username)
 
+    fun login(username: String, password: String): String {
+        val user = db.findByUsername(username)
+        return if (username == user.username && password == user.password) {
+            "token here"
+        } else {
+            "Username and password did not match"
+        }
+    }
+
     @Transactional
     fun postUser(user: User) = db.save(user)
 
