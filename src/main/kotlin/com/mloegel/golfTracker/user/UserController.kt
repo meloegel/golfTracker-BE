@@ -1,5 +1,6 @@
 package com.mloegel.golfTracker.user
 
+import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -7,4 +8,14 @@ import org.springframework.web.bind.annotation.RestController
 class UserController(val service: UserService) {
     @GetMapping("/users")
     fun getAllUsers(): MutableIterable<User> = service.findAllUsers()
+
+    @GetMapping("/users/user/{userid}")
+    fun getUserByUserid(userid: Int): User {
+        try {
+            return service.findByUserid(userid)
+        } catch (exception: EmptyResultDataAccessException) {
+            throw Exception("User with id $userid not found! Exception: $exception")
+        }
+    }
+
 }
