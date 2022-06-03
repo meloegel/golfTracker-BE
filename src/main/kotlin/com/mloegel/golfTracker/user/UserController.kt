@@ -18,4 +18,14 @@ class UserController(val service: UserService) {
         }
     }
 
+    @GetMapping("/users/user/{username}")
+    fun getUserByUsername(username: String): User {
+        try {
+            return service.findByUsername(username)
+        } catch (exception: EmptyResultDataAccessException) {
+            throw Exception("User with username $username not found! Exception: $exception")
+        }
+    }
+
+
 }
