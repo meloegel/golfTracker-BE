@@ -1,6 +1,7 @@
 package com.mloegel.golfTracker.user
 
 import org.springframework.dao.EmptyResultDataAccessException
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -38,6 +39,14 @@ class UserController(val service: UserService) {
         return service.searchByUsername(username)
     }
 
-
+@DeleteMapping("/user/{userid}")
+fun deleteUser(@PathVariable userid: Int) {
+    try {
+        val user = service.findByUserid(userid)
+        return service.deleteUser(user)
+    } catch (exception: EmptyResultDataAccessException) {
+        throw Exception("User with userid $userid not found! Exception: $exception")
+    }
+}
 
 }
