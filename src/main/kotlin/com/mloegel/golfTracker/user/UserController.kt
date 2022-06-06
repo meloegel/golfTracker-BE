@@ -3,6 +3,8 @@ package com.mloegel.golfTracker.user
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -27,6 +29,9 @@ class UserController(val service: UserService) {
             throw Exception("User with username $username not found! Exception: $exception")
         }
     }
+
+    @PostMapping("/user")
+    fun postUser(@RequestBody user: User) = service.postUser(user)
 
     @GetMapping("/users/username/{username}")
     fun searchByUsername(@PathVariable username: String): List<User> {
