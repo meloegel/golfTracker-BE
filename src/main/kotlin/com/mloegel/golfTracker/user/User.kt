@@ -22,7 +22,7 @@ data class User(
     @Column(nullable = false, unique = true)
     var email: String,
 
-    @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
     @JsonIgnoreProperties(value = ["user"], allowSetters = true)
     var Rounds: List<Round>? = ArrayList<Round>()
 )

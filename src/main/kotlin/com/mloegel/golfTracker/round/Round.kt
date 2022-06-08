@@ -31,7 +31,8 @@ data class Round(
     @JsonIgnoreProperties(value = ["roundid"], allowSetters = true)
     val score: List<Hole>? = ArrayList(),
 
-    @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @ManyToOne
+    @JoinColumn(name = "userid", nullable = false)
     @JsonIgnoreProperties(value = ["userid"], allowSetters = true)
-    val user: User
+    val user: User? = null
 )
