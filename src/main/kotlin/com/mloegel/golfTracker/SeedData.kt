@@ -3,6 +3,7 @@ package com.mloegel.golfTracker
 import com.mloegel.golfTracker.round.Round
 import com.mloegel.golfTracker.round.RoundRepository
 import com.mloegel.golfTracker.round.RoundService
+import com.mloegel.golfTracker.user.User
 import com.mloegel.golfTracker.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
@@ -33,6 +34,9 @@ class SeedData : CommandLineRunner {
 
         userService?.deleteAll()
 
-        roundRepository?.save(Round(0, date, 95, "Links of Novi", "Hot day, good first 9"))
+        val u1 = User(1, "fart", "password", "email@email.com")
+        userService?.postUser(u1)
+
+        roundRepository?.save(Round(0, date, 95, "Links of Novi", "Hot day, good first 9", emptyList(), u1))
     }
 }
