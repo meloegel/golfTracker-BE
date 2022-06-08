@@ -2,9 +2,10 @@ package com.mloegel.golfTracker.round
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.mloegel.golfTracker.hole.Hole
-import javax.persistence.*
+import com.mloegel.golfTracker.user.User
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDate
+import javax.persistence.*
 
 @Entity
 @Table("ROUND")
@@ -28,5 +29,9 @@ data class Round(
 
     @OneToMany(mappedBy = "round", cascade = [CascadeType.ALL], orphanRemoval = true)
     @JsonIgnoreProperties(value = ["roundid"], allowSetters = true)
-    val score: List<Hole>? = ArrayList()
+    val score: List<Hole>? = ArrayList(),
+
+    @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @JsonIgnoreProperties(value = ["userid"], allowSetters = true)
+    val user: User
 )
