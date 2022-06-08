@@ -3,6 +3,7 @@ package com.mloegel.golfTracker
 import com.mloegel.golfTracker.round.Round
 import com.mloegel.golfTracker.round.RoundRepository
 import com.mloegel.golfTracker.round.RoundService
+import com.mloegel.golfTracker.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
@@ -18,15 +19,20 @@ class SeedData : CommandLineRunner {
     var roundService: RoundService? = null
 
     @Autowired
+    var userService: UserService? = null
+
+    @Autowired
     var roundRepository: RoundRepository? = null
 
-    var date: LocalDate =  LocalDate.of(2022, 5, 27)
+    var date: LocalDate = LocalDate.of(2022, 5, 27)
 
     @Transactional
     @Throws(Exception::class)
     override fun run(args: Array<String?>?) {
         roundService?.deleteAll()
 
-        roundRepository?.save(Round(0, date, 95, "Links of Novi", "Hot day, good first 9" ))
+        userService?.deleteAll()
+
+        roundRepository?.save(Round(0, date, 95, "Links of Novi", "Hot day, good first 9"))
     }
 }
