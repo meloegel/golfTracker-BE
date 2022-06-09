@@ -37,6 +37,14 @@ class SeedData : CommandLineRunner {
         val u1 = User(1, "fart", "password", "email@email.com")
         userService?.postUser(u1)
 
-        roundRepository?.save(Round(0, date, 95, "Links of Novi", "Hot day, good first 9", emptyList(), u1))
+        val u2 = User(2, "User Blue", "password", "fart@email.com")
+        userService?.postUser(u2)
+
+        val u3 = User(3, "User Red", "password", "tird@email.com")
+        userService?.postUser(u3)
+
+        roundRepository?.save(Round(4, date, 95, "Links of Novi", "Hot day, good first 9", emptyList(), u1))
+
+        roundRepository?.save(Round(5, date, 93, "Sanctuary Lake", "Solid day, chipped in 13", emptyList(), u2))
     }
 }
