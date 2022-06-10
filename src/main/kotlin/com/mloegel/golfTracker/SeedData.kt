@@ -1,5 +1,6 @@
 package com.mloegel.golfTracker
 
+import com.mloegel.golfTracker.hole.Hole
 import com.mloegel.golfTracker.hole.HoleService
 import com.mloegel.golfTracker.round.Round
 import com.mloegel.golfTracker.round.RoundRepository
@@ -47,8 +48,12 @@ class SeedData : CommandLineRunner {
         val u3 = User(3, "User Red", "password", "tird@email.com")
         userService?.postUser(u3)
 
-        roundRepository?.save(Round(4, date, 95, "Links of Novi", "Hot day, good first 9", emptyList(), u1))
+        val r1 = Round(4, date, 95, "Links of Novi", "Hot day, good first 9", emptyList(), u1)
+        roundRepository?.save(r1)
 
-        roundRepository?.save(Round(5, date, 93, "Sanctuary Lake", "Solid day, chipped in 13", emptyList(), u2))
+        val r2 = Round(5, date, 93, "Sanctuary Lake", "Solid day, chipped in 13", emptyList(), u2)
+        roundRepository?.save(r2)
+
+        holeService?.postHole(Hole(6, 4, 4, 2, "", r2))
     }
 }
