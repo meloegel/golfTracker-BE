@@ -54,6 +54,7 @@ class SeedData : CommandLineRunner {
         val r2 = Round(5, date, 93, "Sanctuary Lake", "Solid day, chipped in 13", emptyList(), u2)
         roundRepository?.save(r2)
 
-        holeService?.postHole(Hole(6, 4, 4, 2, "", r2))
+        val h1 = Hole(6, 4, 4, 2, "", r2)
+        holeService?.postHole(h1)
     }
 }
