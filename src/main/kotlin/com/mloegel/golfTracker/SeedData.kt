@@ -1,5 +1,6 @@
 package com.mloegel.golfTracker
 
+import com.mloegel.golfTracker.hole.HoleService
 import com.mloegel.golfTracker.round.Round
 import com.mloegel.golfTracker.round.RoundRepository
 import com.mloegel.golfTracker.round.RoundService
@@ -23,6 +24,9 @@ class SeedData : CommandLineRunner {
     var userService: UserService? = null
 
     @Autowired
+    var holeService: HoleService? = null
+
+    @Autowired
     var roundRepository: RoundRepository? = null
 
     var date: LocalDate = LocalDate.of(2022, 5, 27)
@@ -31,8 +35,8 @@ class SeedData : CommandLineRunner {
     @Throws(Exception::class)
     override fun run(args: Array<String?>?) {
         roundService?.deleteAll()
-
         userService?.deleteAll()
+        holeService?.deleteAll()
 
         val u1 = User(1, "fart", "password", "email@email.com")
         userService?.postUser(u1)
