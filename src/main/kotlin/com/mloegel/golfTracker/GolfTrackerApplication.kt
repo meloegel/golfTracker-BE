@@ -7,5 +7,6 @@ import org.springframework.boot.runApplication
 class GolfTrackerApplication
 
 fun main(args: Array<String>) {
-	runApplication<GolfTrackerApplication>(*args)
+    runApplication<GolfTrackerApplication>(*args)
+    SeedData()
 }
