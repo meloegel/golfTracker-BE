@@ -56,5 +56,11 @@ class SeedData : CommandLineRunner {
 
         val h1 = Hole(6, 4, 4, 2, "strong front wind", r2)
         holeService?.postHole(h1)
+
+        val h2 = Hole(7, 3, 4, 2, "missed left", r2)
+        holeService?.postHole(h2)
+
+        val h3 = Hole(8, 5, 5, 2, "", r2)
+        holeService?.postHole(h3)
     }
 }
