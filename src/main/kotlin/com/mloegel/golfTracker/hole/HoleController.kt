@@ -2,11 +2,7 @@ package com.mloegel.golfTracker.hole
 
 import com.mloegel.golfTracker.round.RoundService
 import org.springframework.dao.EmptyResultDataAccessException
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 class HoleController(val holeService: HoleService, val roundService: RoundService) {
@@ -21,8 +17,14 @@ class HoleController(val holeService: HoleService, val roundService: RoundServic
     }
 
     @PostMapping("/hole")
-    fun postHole(@RequestBody hole: Hole): Hole {
-        return holeService.postHole(hole)
+    fun postHole(@RequestBody hole: Hole, roundid: Int) {
+        try {
+            val round = roundService.findRoundById(roundid)
+            return holeService.postHole(hole, round)
+        } catch (exception: EmptyResultDataAccessException) {
+            throw Exception("Round with id $roundid not found! Exception: $exception")
+        }
+
     }
 
     @DeleteMapping("/hole/{holeid}")

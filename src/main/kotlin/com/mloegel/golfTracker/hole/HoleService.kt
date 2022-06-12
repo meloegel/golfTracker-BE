@@ -14,7 +14,10 @@ class HoleService(val db: HoleRepository) {
     fun findHolesByRound(round: Round): List<Hole> = db.findHolesByRound(round)
 
     @Transactional
-    fun postHole(hole: Hole) = db.save(hole)
+    fun postHole(hole: Hole, round: Round) {
+        hole.round = round
+        db.save(hole)
+    }
 
     @Transactional
     fun deleteHole(hole: Hole) = db.delete(hole)

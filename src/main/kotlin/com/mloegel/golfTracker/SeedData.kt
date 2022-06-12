@@ -1,6 +1,7 @@
 package com.mloegel.golfTracker
 
 import com.mloegel.golfTracker.hole.Hole
+import com.mloegel.golfTracker.hole.HoleRepository
 import com.mloegel.golfTracker.hole.HoleService
 import com.mloegel.golfTracker.round.Round
 import com.mloegel.golfTracker.round.RoundRepository
@@ -30,6 +31,9 @@ class SeedData : CommandLineRunner {
     @Autowired
     var roundRepository: RoundRepository? = null
 
+    @Autowired
+    var holeRepository: HoleRepository? = null
+
     var date: LocalDate = LocalDate.of(2022, 5, 27)
 
     @Transactional
@@ -55,12 +59,12 @@ class SeedData : CommandLineRunner {
         roundRepository?.save(r2)
 
         val h1 = Hole(6, 4, 4, 2, "strong front wind", r2)
-        holeService?.postHole(h1)
+        holeRepository?.save(h1)
 
         val h2 = Hole(7, 3, 4, 2, "missed left", r2)
-        holeService?.postHole(h2)
+        holeRepository?.save(h2)
 
         val h3 = Hole(8, 5, 5, 2, "", r2)
-        holeService?.postHole(h3)
+        holeRepository?.save(h3)
     }
 }

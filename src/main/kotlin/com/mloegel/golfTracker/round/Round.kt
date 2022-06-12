@@ -29,7 +29,7 @@ data class Round(
 
     @OneToMany(mappedBy = "holeid", cascade = [CascadeType.ALL], orphanRemoval = true)
     @JsonIgnoreProperties(value = ["holeid"], allowSetters = true)
-    var score: List<Hole>? = ArrayList<Hole>(),
+    val score: List<Hole> = ArrayList<Hole>(),
 
     @ManyToOne
     @JoinColumn(name = "userid", nullable = false)

@@ -2,14 +2,8 @@ package com.mloegel.golfTracker.hole
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.mloegel.golfTracker.round.Round
-import javax.persistence.Entity
 import org.springframework.data.relational.core.mapping.Table
-import javax.persistence.Column
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 
 @Entity
@@ -32,7 +26,7 @@ data class Hole(
     @Column
     val notes: String,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roundid", nullable = false)
     @JsonIgnoreProperties(value = ["date", "totalScore", "courseName", "description", "score"], allowSetters = true)
     var round: Round? = null
