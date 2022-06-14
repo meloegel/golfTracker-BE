@@ -1,15 +1,11 @@
 package com.mloegel.golfTracker.round
 
+import com.mloegel.golfTracker.user.UserService
 import org.springframework.dao.EmptyResultDataAccessException
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
-class RoundController(val service: RoundService) {
+class RoundController(val service: RoundService, val userService: UserService) {
 
     @GetMapping("/rounds")
     fun getAllRounds(): MutableIterable<Round> = service.findAllRounds()
@@ -18,7 +14,7 @@ class RoundController(val service: RoundService) {
     fun getRoundByRoundid(@PathVariable roundid: Int): Round {
         try {
             return service.findRoundById(roundid)
-        }catch (exception: EmptyResultDataAccessException) {
+        } catch (exception: EmptyResultDataAccessException) {
             throw Exception("Round with id $roundid not found! Exception: $exception")
         }
     }
@@ -37,9 +33,10 @@ class RoundController(val service: RoundService) {
         return service.searchRoundsByCourseName(courseName)
     }
 
-    @PostMapping("/round")
-    fun postRound(@RequestBody round: Round): Round {
-        return service.postRound(round)
+    @PostMapping("/round/{userid}")
+    fun postRound(@RequestBody round: Round, @PathVariable userid: Int) {
+        val user = userService.findByUserid(userid)
+        return service.postRound(round, user)
     }
 
     @DeleteMapping("/round/{roundid}")

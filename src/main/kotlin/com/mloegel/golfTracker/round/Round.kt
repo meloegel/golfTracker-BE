@@ -34,5 +34,5 @@ data class Round(
     @ManyToOne
     @JoinColumn(name = "userid", nullable = false)
     @JsonIgnoreProperties(value = ["userid"], allowSetters = true)
-    val user: User? = null
+    var user: User
 )

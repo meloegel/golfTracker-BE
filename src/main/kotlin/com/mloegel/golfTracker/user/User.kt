@@ -24,5 +24,5 @@ data class User(
 
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
     @JsonIgnoreProperties(value = ["user"], allowSetters = true)
-    var Rounds: List<Round>? = ArrayList<Round>()
+    var rounds: List<Round> = ArrayList<Round>()
 )
