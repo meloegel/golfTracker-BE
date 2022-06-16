@@ -26,7 +26,7 @@ data class Hole(
     @Column
     val notes: String,
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "roundid", nullable = false)
     @JsonIgnoreProperties(value = ["date", "totalScore", "courseName", "description", "score"], allowSetters = true)
     var round: Round? = null
