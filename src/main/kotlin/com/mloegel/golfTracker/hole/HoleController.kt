@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class HoleController(val holeService: HoleService, val roundService: RoundService) {
 
-    fun findHolesByRound(roundid: Int): List<Hole> {
+    @GetMapping("/holes/{roundid}")
+    fun findHolesByRound(@PathVariable roundid: Int): List<Hole> {
         try {
             val round = roundService.findRoundById(roundid)
             return holeService.findHolesByRound(round)
