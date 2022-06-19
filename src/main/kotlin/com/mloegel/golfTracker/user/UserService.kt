@@ -19,7 +19,7 @@ class UserService(val db: UserRepository) {
     fun login(username: String, password: String): String {
         val user = db.findByUsername(username)
         return if (username == user.username && password == user.password) {
-            "token here"
+            java.util.UUID.randomUUID().toString()
         } else {
             "Username and password did not match"
         }

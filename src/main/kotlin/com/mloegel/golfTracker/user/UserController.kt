@@ -34,7 +34,7 @@ class UserController(val service: UserService) {
         return service.searchByUsername(username)
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     fun login(@RequestBody loginInfo: Login): String {
         return service.login(loginInfo.username, loginInfo.password)
     }
