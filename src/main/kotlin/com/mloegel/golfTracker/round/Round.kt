@@ -27,12 +27,12 @@ data class Round(
     @Column
     val description: String,
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "holeid", cascade = [CascadeType.ALL], orphanRemoval = true)
-    @JsonIgnoreProperties(value = ["holeid"], allowSetters = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "round", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @JsonIgnoreProperties(value = ["holeid", "round"], allowSetters = true)
     var score: List<Hole> = ArrayList<Hole>(),
 
     @ManyToOne
     @JoinColumn(name = "userid", nullable = false)
-    @JsonIgnoreProperties(value = ["rounds"], allowSetters = true)
+    @JsonIgnoreProperties(value = ["rounds", "password"], allowSetters = true)
     var user: User
 )
