@@ -15,6 +15,8 @@ class RoundService(val db: RoundRepository) {
 
     fun findRoundsByCourseName(courseName: String): List<Round> = db.findRoundByCourseName(courseName)
 
+    fun findRoundsByUser(user: User): List<Round> = db.findRoundByUser(user)
+
     fun searchRoundsByCourseName(courseName: String): List<Round> =
         db.findRoundByCourseNameContainingIgnoreCase(courseName)
 

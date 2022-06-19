@@ -28,6 +28,17 @@ class RoundController(val service: RoundService, val userService: UserService) {
         }
     }
 
+    @GetMapping("/rounds/user/{userid}")
+    fun getRoundsByUser(@PathVariable userId: Int): List<Round> {
+        try {
+            val user = userService.findByUserid(userId)
+            return service.findRoundsByUser(user)
+        } catch (exception: EmptyResultDataAccessException) {
+            throw Exception("User with user id $userId not found! Exception: $exception")
+        }
+    }
+
+
     @GetMapping("/rounds/search/courseName/{courseName}")
     fun searchForRoundsByCourseName(@PathVariable courseName: String): List<Round> {
         return service.searchRoundsByCourseName(courseName)
