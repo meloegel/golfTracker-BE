@@ -76,7 +76,13 @@ class SeedData : CommandLineRunner {
         val h6 = Hole(11, 3, 5, 3, "", r2)
         holeRepository?.save(h6)
 
-        val h7 = Hole(10, 4, 6, 3, "Bad putts", r2)
+        val h7 = Hole(12, 4, 6, 3, "Bad putts", r2)
         holeRepository?.save(h7)
+
+        val h8 = Hole(13, 5, 7, 3, "Hard hole", r2)
+        holeRepository?.save(h8)
+
+        val h9 = Hole(14, 4, 5, 2, "", r2)
+        holeRepository?.save(h9)
     }
 }
